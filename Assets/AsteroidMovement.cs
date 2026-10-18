@@ -4,6 +4,7 @@ public class AsteroidMovement : MonoBehaviour
 {
     
     public float speed = 3f;
+    public GameObject explosionPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +21,13 @@ public class AsteroidMovement : MonoBehaviour
     {
         if(other.CompareTag("Laser"))
         {
+            Debug.Log("Laser hit asteroid");
+            
+            Instantiate(
+                explosionPrefab,
+                transform.position,
+                Quaternion.identity
+            );
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
